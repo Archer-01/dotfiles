@@ -126,21 +126,21 @@ alias work="cd $HOME/Documents/Work"
 alias df="df -h"
 alias free="free -m"
 
-# PATH ###
-if [ -d "$HOME/.local/bin" ];
-	then PATH="$HOME/.local/bin:$PATH"
+### PATH ###
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "/goinfre/$user/homebrew/bin" ];
-	then path="/goinfre/$user/homebrew/bin:$path"
+if [ -d "/goinfre/$USER/homebrew/bin" ]; then
+	PATH="/goinfre/$USER/homebrew/bin:$PATH"
 fi
 
-if [ -d "/goinfre/$user/homebrew/sbin" ];
-	then path="/goinfre/$user/homebrew/bin:$path"
+if [ -d "/goinfre/$user/homebrew/sbin" ]; then
+	PATH="/goinfre/$USER/homebrew/bin:$PATH"
 fi
 
-if [ -d "/goinfre/$USER/.npm-global/bin" ];
-	then PATH="$PATH:/goinfre/$USER/.npm-global/bin"
+if [ -d "/goinfre/$USER/.npm-global/bin" ]; then
+	PATH="/goinfre/$USER/.npm-global/bin:$PATH"
 fi
 
 function intra {
