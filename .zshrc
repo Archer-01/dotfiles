@@ -31,21 +31,14 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 ### "nvim" as manpager
 # export MANPAGER="nvim -c 'set ft=man' -"
 
-# dotiles config
+### DOTILES CONFIG ###
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
-# 1337 Related
+### 1337 RELATED ###
 rm -f $HOME/.reset
 alias cclean="$HOME/Cleaner_42.sh"
 alias norm="norminette"
 alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
-local earphones="oraimo FreePods 3"
-alias blconnect "blueutil --connect \"$earphones\""
-alias bldisconnect "blueutil --disconnect \"$earphones\""
-alias blpair "blueutil --pair \"$earphones\""
-alias blunpair "blueutil --unpair \"$earphones\""
-alias blon "blueutil --power 1"
-alias bloff "blueutil --power 0"
 export VAGRANT_HOME=/goinfre/$USER/.vagrant.d
 function brew {
 	local green="\033[0;32m"
@@ -73,12 +66,21 @@ function valgrind {
 	return $?
 }
 
-# Safety aliases
+### BLUETOOTH EARPHONES ###
+local earphones="oraimo FreePods 3"
+alias blconnect "blueutil --connect \"$earphones\""
+alias bldisconnect "blueutil --disconnect \"$earphones\""
+alias blpair "blueutil --pair \"$earphones\""
+alias blunpair "blueutil --unpair \"$earphones\""
+alias blon "blueutil --power 1"
+alias bloff "blueutil --power 0"
+
+# SAFETY ALIASES ###
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 
-# Git Shortcuts
+# GIT SHORTCUTS ###
 alias gcl="git clone --recurse-submodules"
 alias gp="git push"
 alias gl="git pull"
@@ -94,12 +96,12 @@ alias grv="git remote -v"
 alias grr="git remote rm"
 alias lg="lazygit"
 
-# Ls shortcuts
+# LS SHORTCUTS ###
 alias ls="exa -a --group-directories-first --icons"
 alias l="exa -al --group-directories-first --icons"
 alias lt="exa -aT --color=always --group-directories-first --icons"
 
-# Directory manipulation shortcuts
+# DIRECTORY MANIPULATION SHORTCUTS ###
 alias md="mkdir -p"
 alias rd="rmdir"
 function mdcd {
@@ -113,7 +115,7 @@ function mdcd {
 alias ..="cd .."
 alias ...="cd ../.."
 
-# Misc shortcuts
+# MISC SHORTCUTS ###
 alias c="clear"
 alias tree="tree -C"
 alias grep="rg"
@@ -124,7 +126,7 @@ alias work="cd $HOME/Documents/Work"
 alias df="df -h"
 alias free="free -m"
 
-# Path
+# PATH ###
 if [ -d "$HOME/.local/bin" ];
 	then PATH="$HOME/.local/bin:$PATH"
 fi
@@ -161,13 +163,13 @@ function intra {
 	fi
 }
 
-# C/C++ Environemt
+# C/C++ ENVIRONEMT ###
 export CC="cc"
 export CFLAGS="-Wall -Wextra -Werror"
 export CXX="c++"
 export CXXFLAGS="-Wall -Wextra -Werror -std=c++98"
 
-### Function extract for common file formats ###
+### FUNCTION EXTRACT FOR COMMON FILE FORMATS ###
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 
