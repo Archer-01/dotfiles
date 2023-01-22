@@ -11,6 +11,26 @@
 # Discord	Archer#0177
 #
 
+### EXPORT
+export TERM="xterm-256color"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export EDITOR="nvim"
+
+### Default keybindinds (-e for emacs, -v for vi)
+bindkey -e
+
+### SET MANPAGER
+### Uncomment only one of these!
+
+### "bat" as manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+### "vim" as manpager
+# export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
+
+### "nvim" as manpager
+# export MANPAGER="nvim -c 'set ft=man' -"
+
 # dotiles config
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
@@ -76,7 +96,8 @@ alias lg="lazygit"
 
 # Ls shortcuts
 alias ls="exa -a --group-directories-first --icons"
-alias l="ls -l"
+alias l="exa -al --group-directories-first --icons"
+alias lt="exa -aT --color=always --group-directories-first --icons"
 
 # Directory manipulation shortcuts
 alias md="mkdir -p"
@@ -100,13 +121,25 @@ alias find="fd"
 alias vim="nvim"
 alias reload="source $HOME/.zshrc"
 alias work="cd $HOME/Documents/Work"
+alias df="df -h"
+alias free="free -m"
 
 # Path
-PATH="$HOME/.local/bin:$PATH"
-PATH="/goinfre/$USER/homebrew/bin:$PATH"
-PATH="/goinfre/$USER/homebrew/sbin:$PATH"
-PATH="/goinfre/$USER/.npm-global/bin:$PATH"
-export PATH
+if [ -d "$HOME/.local/bin" ];
+	then PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "/goinfre/$user/homebrew/bin" ];
+	then path="/goinfre/$user/homebrew/bin:$path"
+fi
+
+if [ -d "/goinfre/$user/homebrew/sbin" ];
+	then path="/goinfre/$user/homebrew/bin:$path"
+fi
+
+if [ -d "/goinfre/$USER/.npm-global/bin" ];
+	then PATH="$PATH:/goinfre/$USER/.npm-global/bin"
+fi
 
 function intra {
 	if [ $# -eq 0 ]; then
@@ -134,14 +167,48 @@ export CFLAGS="-Wall -Wextra -Werror"
 export CXX="c++"
 export CXXFLAGS="-Wall -Wextra -Werror -std=c++98"
 
-# Colored Manpages
-export less_termcap_mb=$'\e[1;32m'
-export less_termcap_md=$'\e[1;32m'
-export less_termcap_me=$'\e[0m'
-export less_termcap_se=$'\e[0m'
-export less_termcap_so=$'\e[01;33m'
-export less_termcap_ue=$'\e[0m'
-export less_termcap_us=$'\e[1;4;31m'
+### Function extract for common file formats ###
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
 
-# Misc Environemt
-export EDITOR="nvim"
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+ else
+    for n in "$@"
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *.cpio)      cpio -id < ./"$n"  ;;
+            *.cba|*.ace)      unace x ./"$n"      ;;
+            *)
+                         echo "extract: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
+}
+
+IFS=$SAVEIFS
+
+### SETTING STARSHIP PROMPT ###
+eval "$(starship init zsh)"
