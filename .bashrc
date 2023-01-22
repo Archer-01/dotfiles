@@ -141,7 +141,7 @@ if [ -d "/goinfre/$user/homebrew/bin" ]; then
 fi
 
 if [ -d "/goinfre/$user/homebrew/sbin" ]; then
-	PATH="/goinfre/$USER/homebrew/bin:$PATH"
+	PATH="/goinfre/$USER/homebrew/sbin:$PATH"
 fi
 
 if [ -d "/goinfre/$USER/.npm-global/bin" ]; then
