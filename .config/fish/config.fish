@@ -7,8 +7,6 @@
 #                        __/ |                  
 #                       |___/                   
 #
-# Zsh Run Commands for MacOS (1337)
-#
 # By		Hamza Haddani
 # Github	https://github.com/Archer-01
 # Discord	Archer#0177
@@ -26,6 +24,7 @@ set EDITOR "nvim"
 
 ### "bat" as manpager
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -gx BAT_THEME "Dracula"
 
 ### "vim" as manpager
 # set -x MANPAGER '/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
@@ -39,9 +38,10 @@ alias config "/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 ### KEY BINDINGS
 function fish_user_key_bindings
 	fish_default_key_bindings
-	#fish_vi_key_bindings
+	# fish_vi_key_bindings
 
 	bind \cy forward-char
+	bind \ck kill-line
 end
 
 ### 1337 RELATED ###
@@ -107,16 +107,34 @@ alias grv "git remote -v"
 alias grr "git remote rm"
 alias lg "lazygit"
 
-# LS SHORTCUTS ###
+### DOCKER SHORTCUTS ###
+alias drun "docker run -it --rm"
+alias dps "docker ps --all"
+alias dils "docker image ls"
+alias dvls "docker volume ls"
+alias dnls "docker network ls"
+alias dex "docker exec -it"
+alias dc "docker-compose"
+alias dpr "docker system prune"
+
+### VAGRANT SHORTCUTS ###
+alias vup "vagrant up"
+alias vssh "vagrant ssh"
+alias vrel "vagrant reload"
+alias vhalt "vagrant halt"
+
+### LS SHORTCUTS ###
 alias ls "exa -a --group-directories-first --icons"
 alias l "exa -al --group-directories-first --icons"
-alias lt "exa -aT --color=always --group-directories-first --icons"
+alias lt "exa -alT --group-directories-first --icons"
 
 ### DIRECTORY MANIPULATION SHORTCUTS ###
 alias md "mkdir -p"
 alias rd "rmdir"
 alias .. "cd .."
 alias ... "cd ../.."
+
+alias vopen "fd --type f --hidden --exclude .git | fzf-tmux -p | xargs nvim"
 
 function mdcd
 	if test $(count $argv) -eq 0
@@ -125,6 +143,16 @@ function mdcd
 	end
 	mkdir -p $argv[1]
 	cd $argv[1]
+	return $status
+end
+
+function cdls
+	if test $(count $argv) -ne 1
+		echo "Usage: cdls [directory]"
+		return 1
+	end
+	cd $argv[1]
+	ls
 	return $status
 end
 
