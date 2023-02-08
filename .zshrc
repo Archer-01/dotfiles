@@ -214,3 +214,8 @@ IFS=$SAVEIFS
 
 ### SETTING STARSHIP PROMPT ###
 eval "$(starship init zsh)"
+
+### 1337 Macos - Use fish shell instead of zsh ###
+if [ -f "/goinfre/$USER/homebrew/bin/fish" ]; then
+	exec fish
+fi
