@@ -124,9 +124,17 @@ alias vrel "vagrant reload"
 alias vhalt "vagrant halt"
 
 ### LS SHORTCUTS ###
-alias ls "exa -a --group-directories-first --icons"
-alias l "exa -al --group-directories-first --icons"
-alias lt "exa -alT --group-directories-first --icons"
+function ls
+	command --query exa
+	if test $status -ne 0
+		command ls $argv
+	else
+		command exa -a --group-directories-first --icons $argv
+	end
+	return $status
+end
+alias l "ls -l"
+alias lt "ls -lT"
 
 ### DIRECTORY MANIPULATION SHORTCUTS ###
 alias md "mkdir -p"
