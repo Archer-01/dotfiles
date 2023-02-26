@@ -117,8 +117,6 @@ alias ...="cd ../.."
 # MISC SHORTCUTS ###
 alias c="clear"
 alias tree="tree -C"
-alias grep="rg"
-alias find="fd"
 alias vim="nvim"
 alias reload="source $HOME/.zshrc"
 alias work="cd $HOME/Documents/Work"
