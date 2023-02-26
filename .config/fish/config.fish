@@ -16,14 +16,13 @@
 set fish_greeting
 
 ### EXPORT 
-set TERM "xterm-256color"
 set EDITOR "nvim"
 
 ### SET MANPAGER
 ### Uncomment only one of these!
 
 ### "bat" as manpager
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx BAT_THEME "Dracula"
 
 ### "vim" as manpager
@@ -169,7 +168,7 @@ alias c "clear"
 alias tree "tree -C"
 alias grep "rg"
 alias find "fd"
-alias vim "nvim"
+# alias vim "nvim"
 alias reload "source $HOME/.config/fish/config.fish"
 alias work "cd $HOME/Documents/Work"
 alias df "df -h"
