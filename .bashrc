@@ -13,7 +13,7 @@
 
 ### EXPORT
 export HISTCONTROL=ignoredups:erasedups
-export EDITOR="nvim"
+export EDITOR="lvim"
 
 ### SHOPT (Shell Options)
 shopt -s cdspell # autocorrects cd misspellings

@@ -16,7 +16,7 @@
 set fish_greeting
 
 ### EXPORT 
-set EDITOR "nvim"
+set EDITOR "lvim"
 
 ### SET MANPAGER
 ### Uncomment only one of these!
@@ -168,7 +168,6 @@ alias c "clear"
 alias tree "tree -C"
 alias grep "rg"
 alias find "fd"
-# alias vim "nvim"
 alias reload "source $HOME/.config/fish/config.fish"
 alias work "cd $HOME/Documents/Work"
 alias df "df -h"

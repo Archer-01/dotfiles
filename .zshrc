@@ -13,7 +13,7 @@
 
 ### EXPORT
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-export EDITOR="nvim"
+export EDITOR="lvim"
 
 ### Default keybindinds (-e for emacs, -v for vi)
 bindkey -e
