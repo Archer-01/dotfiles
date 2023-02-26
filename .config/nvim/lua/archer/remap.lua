@@ -43,3 +43,6 @@ vim.keymap.set("n", "<leader>td", vim.cmd.TodoTelescope)
 
 -- Floating terminal
 vim.keymap.set("n", "<leader>ft", vim.cmd.FloatermToggle)
+
+-- Auto formatter
+vim.keymap.set("n", "<leader>cf", vim.cmd.LspZeroFormat)
