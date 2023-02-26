@@ -128,12 +128,12 @@ function ls
 	if test $status -ne 0
 		command ls $argv
 	else
-		command exa -a --group-directories-first --icons $argv
+    command ls "exa --all --group-directories-first --icons"
 	end
 	return $status
 end
-alias l "ls -l"
-alias lt "ls -lT"
+alias l "ls --long --git"
+alias lt "ls --long --tree"
 
 ### DIRECTORY MANIPULATION SHORTCUTS ###
 alias md "mkdir -p"

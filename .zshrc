@@ -96,9 +96,9 @@ alias grr="git remote rm"
 alias lg="lazygit"
 
 # LS SHORTCUTS ###
-alias ls="exa -a --group-directories-first --icons"
-alias l="exa -al --group-directories-first --icons"
-alias lt="exa -aT --color=always --group-directories-first --icons"
+alias ls="exa --all --group-directories-first --icons"
+alias l="exa --all --long --group-directories-first --icons --git"
+alias lt="exa -all --tree --color=always --group-directories-firSt --icons"
 
 # DIRECTORY MANIPULATION SHORTCUTS ###
 alias md="mkdir -p"
