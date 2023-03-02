@@ -126,14 +126,32 @@ alias vhalt "vagrant halt"
 function ls
 	command --query exa
 	if test $status -ne 0
-		command ls $argv
+		command ls -a $argv
 	else
-    command ls "exa --all --group-directories-first --icons"
+		command exa --all --group-directories-first --icons $argv
 	end
 	return $status
 end
-alias l "ls --long --git"
-alias lt "ls --long --tree"
+
+function l
+	command --query exa
+	if test $status -ne 0
+		command ls -al $argv
+	else
+		ls --long --git $argv
+	end
+	return $status
+end
+
+function lt
+	command --query exa
+	if test $status -ne 0
+		command tree -C
+	else
+		ls --long --tree
+	end
+	return $status
+end
 
 ### DIRECTORY MANIPULATION SHORTCUTS ###
 alias md "mkdir -p"
