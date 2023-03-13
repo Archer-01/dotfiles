@@ -16,7 +16,7 @@
 set fish_greeting
 
 ### EXPORT 
-set EDITOR "lvim"
+set -gx EDITOR "lvim"
 
 ### SET MANPAGER
 ### Uncomment only one of these!
